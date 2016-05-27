@@ -1,0 +1,28 @@
+{
+    "name": "loginbox/loginbox-php",
+    "description": "Loginbox sdk for php.",
+    "license": "MIT",
+    "homepage": "https://loginbox.io",
+    "support": {
+        "issues": "https://github.com/loginbox/loginbox-php/issues",
+        "source": "https://github.com/loginbox/loginbox-php"
+    },
+    "require": {
+        "php": ">=5.5.9",
+        "panda/ui": ">=0.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Loginbox\\": "src/Loginbox/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    },
+    "minimum-stability": "dev"
+}
