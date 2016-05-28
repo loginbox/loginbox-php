@@ -9,7 +9,11 @@
     },
     "require": {
         "php": ">=5.5.9",
-        "panda/ui": ">=0.1"
+        "loginbox/awt-php": ">=0.1",
+        "panda/ui": ">=0.1",
+        "guzzlehttp/psr7": "~1.3",
+        "php-http/httplug": "^1.0",
+        "php-http/discovery": "^0.8"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.1"
