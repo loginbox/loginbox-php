@@ -5,8 +5,8 @@ declare(strict_types = 1);
 namespace Loginbox\Box;
 
 use Panda\Ui\Controls\Form;
-use Panda\Ui\Controls\FormFactory;
 use Panda\Ui\DOMPrototype;
+use Panda\Ui\Factories\FormFactory;
 use Panda\Ui\Html\HTMLElement;
 
 /**
