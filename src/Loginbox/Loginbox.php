@@ -10,7 +10,6 @@ use stdClass;
 
 /**
  * Class Loginbox
- * The Loginbox factory interface.
  *
  * @package Loginbox
  * @version 0.1
@@ -33,8 +32,10 @@ class Loginbox
     protected $apiKey;
 
     /**
-     * @param string $apiKey
-     * @param HttpClient  $httpClient
+     * Loginbox constructor.
+     *
+     * @param string     $apiKey
+     * @param HttpClient $httpClient
      */
     public function __construct($apiKey, HttpClient $httpClient = null)
     {
