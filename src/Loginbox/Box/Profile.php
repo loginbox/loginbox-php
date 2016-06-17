@@ -5,11 +5,9 @@ declare(strict_types = 1);
 namespace Loginbox\Box;
 
 use Panda\Ui\Contracts\Factories\HTMLFormFactoryInterface;
-use Panda\Ui\Controls\Form;
-use Panda\Ui\DOMPrototype;
-use Panda\Ui\Factories\FormFactory;
+use Panda\Ui\Html\Controls\Form;
+use Panda\Ui\Html\HTMLDocument;
 use Panda\Ui\Html\HTMLElement;
-use Panda\Ui\Templates\Forms\SimpleForm;
 
 /**
  * Class Profile
@@ -28,14 +26,17 @@ class Profile extends HTMLElement
     /**
      * Login constructor.
      *
-     * @param DOMPrototype             $HTMLDocument
+     * @param HTMLDocument             $HTMLDocument
      * @param HTMLFormFactoryInterface $FormFactory
      */
-    public function __construct($HTMLDocument, $FormFactory = null)
+    public function __construct(HTMLDocument $HTMLDocument, HTMLFormFactoryInterface $FormFactory)
     {
+        // Set form factory
+        $FormFactory->setHTMLDocument($HTMLDocument);
+        $this->formFactory = $FormFactory;
+
         // Create HTMLElement
         parent::__construct($HTMLDocument, $name = 'div', $value = '', $id = '', $class = 'profileBox');
-        $this->formFactory = $FormFactory ?: new FormFactory($HTMLDocument);
     }
 
     /**
@@ -106,12 +107,20 @@ class Profile extends HTMLElement
      */
     private function getLogoutForm($logoutUrl)
     {
-        $form = new SimpleForm($this->getHTMLDocument(), null, '', $logoutUrl, true, false);
-        $form->build(false, false);
+        // Build simple form
+        $form = $this->getFormFactory()->buildForm('logoutForm', $logoutUrl, true, false);
 
         $logoutSubmit = $form->getHTMLFormFactory()->buildInput($type = 'submit', $name = 'logout', $value = 'Logout', $id = '', $class = 'logoutButton', $required = false, $autofocus = false);
         $form->append($logoutSubmit);
 
         return $form;
+    }
+
+    /**
+     * @return HTMLFormFactoryInterface
+     */
+    public function getFormFactory()
+    {
+        return $this->formFactory;
     }
 }

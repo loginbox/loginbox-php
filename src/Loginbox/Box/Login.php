@@ -4,9 +4,10 @@ declare(strict_types = 1);
 
 namespace Loginbox\Box;
 
-use Panda\Ui\Controls\Form;
-use Panda\Ui\DOMPrototype;
+use Panda\Ui\Contracts\Factories\HTMLFormFactoryInterface;
 use Panda\Ui\Factories\FormFactory;
+use Panda\Ui\Html\Controls\Form;
+use Panda\Ui\Html\HTMLDocument;
 use Panda\Ui\Html\HTMLElement;
 
 /**
@@ -24,17 +25,27 @@ class Login extends HTMLElement
     /**
      * The header element.
      *
-     * @type    HTMLElement
+     * @type HTMLElement
      */
     private $header;
 
     /**
+     * @type HTMLFormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
      * Login constructor.
      *
-     * @param DOMPrototype $HTMLDocument
+     * @param HTMLDocument             $HTMLDocument
+     * @param HTMLFormFactoryInterface $FormFactory
      */
-    public function __construct($HTMLDocument)
+    public function __construct(HTMLDocument $HTMLDocument, HTMLFormFactoryInterface $FormFactory)
     {
+        // Set form factory
+        $FormFactory->setHTMLDocument($HTMLDocument);
+        $this->formFactory = $FormFactory;
+
         // Create HTMLElement
         parent::__construct($HTMLDocument, $name = 'div', $value = '', $id = '', $class = 'loginBox');
     }
@@ -64,6 +75,8 @@ class Login extends HTMLElement
 
     /**
      * Build the box header.
+     *
+     * @return $this
      */
     private function buildHeader()
     {
@@ -74,25 +87,19 @@ class Login extends HTMLElement
         // Login Dialog Title
         $dialogTitle = $this->getHTMLDocument()->create('div', 'Account Login', '', 'ltitle');
         $this->header->append($dialogTitle);
+
+        return $this;
     }
 
     /**
      * Build the main dialog form.
      *
-     * @param    string $usernameValue
-     *        The default username value for the input.
-     *        It is empty by default.
+     * @param string $usernameValue The default username value for the input.
+     * @param string $logintype     The login dialog type.
+     * @param string $return_url    Provide a redirect url after successful login. Leave empty for default action
+     *                              (reload or redirect to my).
      *
-     * @param    string $logintype
-     *        The login dialog type.
-     *        See class constants for more information.
-     *
-     * @param    string $return_url
-     *        Provide a redirect url after successful login.
-     *        Leave empty for default action (reload or redirect to my).
-     *        It is empty by default.
-     *
-     * @return    void
+     * @return $this
      */
     private function buildMainForm($usernameValue = '', $logintype = self::LGN_TYPE_PAGE, $return_url = '')
     {
@@ -105,7 +112,7 @@ class Login extends HTMLElement
         $mainContainer->append($socialLoginContainer);
 
         // Build login form
-        $loginForm = new Form($this->getHTMLDocument(), new FormFactory($this->getHTMLDocument()), 'loginForm', '/login', false, false, false);
+        $loginForm = $this->getFormFactory()->buildForm('loginForm', '/login', true, false);
         $mainContainer->append($loginForm);
 
         // Set login type or return url to dialog
@@ -173,13 +180,14 @@ class Login extends HTMLElement
         // Login button
         $input = $loginForm->getHTMLFormFactory()->buildSubmitButton('Login');
         $formContainer->append($input);
+
+        return $this;
     }
 
     /**
      * Build the dialog footer.
      *
      * @param string $returnUrl Sets the register dialog link with the given return url after registration.
-     *                          It is empty by default.
      */
     private function buildFooter($returnUrl = '')
     {
@@ -201,5 +209,13 @@ class Login extends HTMLElement
         $wl = $this->getHTMLDocument()->getHTMLFactory()->buildWeblink('/login/forgot', '_self', "I can't login", '', '');
         $hlink = $this->getHTMLDocument()->create('h4', $wl, '', 'forgot');
         $footer->append($hlink);
+    }
+
+    /**
+     * @return HTMLFormFactoryInterface
+     */
+    public function getFormFactory()
+    {
+        return $this->formFactory;
     }
 }
