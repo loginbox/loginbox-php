@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace Loginbox\Box;
 
 use Panda\Ui\Contracts\Factories\HTMLFormFactoryInterface;
-use Panda\Ui\Factories\FormFactory;
 use Panda\Ui\Html\Controls\Form;
 use Panda\Ui\Html\HTMLDocument;
 use Panda\Ui\Html\HTMLElement;
@@ -15,6 +14,7 @@ use Panda\Ui\Html\HTMLElement;
  * Create offline Login Box.
  *
  * @package Loginbox\Box
+ *
  * @version 0.1
  */
 class Login extends HTMLElement
@@ -94,14 +94,13 @@ class Login extends HTMLElement
     /**
      * Build the main dialog form.
      *
-     * @param string $usernameValue The default username value for the input.
-     * @param string $logintype     The login dialog type.
-     * @param string $return_url    Provide a redirect url after successful login. Leave empty for default action
-     *                              (reload or redirect to my).
+     * @param string $username   The default username value for the input.
+     * @param string $logintype  The login dialog type.
+     * @param string $return_url Provide a redirect url after successful login.
      *
      * @return $this
      */
-    private function buildMainForm($usernameValue = '', $logintype = self::LGN_TYPE_PAGE, $return_url = '')
+    private function buildMainForm($username = '', $logintype = self::LGN_TYPE_PAGE, $return_url = '')
     {
         // Main Container
         $mainContainer = $this->getHTMLDocument()->create('div', '', '', 'main');
@@ -129,7 +128,7 @@ class Login extends HTMLElement
         $loginForm->append($formContainer);
 
         // Username
-        $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'text', $name = 'username', $value = $usernameValue, $id = '', $class = 'lpinp', $autofocus = true, $required = true);
+        $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'text', $name = 'username', $value = $username, $id = '', $class = 'lpinp', $autofocus = true, $required = true);
         $input->attr('placeholder', ucfirst('username'));
         $formContainer->append($input);
 
@@ -196,7 +195,8 @@ class Login extends HTMLElement
         $this->append($footer);
 
         // Register link
-        $wl = $this->getHTMLDocument()->getHTMLFactory()->buildWeblink('/register', '_self', 'Create an Account', '', '');
+        $href = '/register' . (empty($returnUrl) ?: '?return_url=' . $returnUrl);
+        $wl = $this->getHTMLDocument()->getHTMLFactory()->buildWeblink($href, '_self', 'Create an Account', '', '');
         $hlink = $this->getHTMLDocument()->create('h4', $wl, '', 'register');
         $footer->append($hlink);
 

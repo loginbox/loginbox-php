@@ -14,6 +14,7 @@ use Panda\Ui\Html\HTMLElement;
  * Create offline Profile Box.
  *
  * @package Loginbox\Box
+ *
  * @version 0.1
  */
 class Profile extends HTMLElement
