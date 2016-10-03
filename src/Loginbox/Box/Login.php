@@ -1,11 +1,19 @@
 <?php
 
-declare(strict_types = 1);
+/*
+ * This file is part of loginBox php library.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Loginbox\Box;
 
+use Exception;
+use Loginbox\Config\LoginSettings;
+use Panda\Localization\Translation\JsonProcessor;
+use Panda\Localization\Translator;
 use Panda\Ui\Contracts\Factories\HTMLFormFactoryInterface;
-use Panda\Ui\Html\Controls\Form;
 use Panda\Ui\Html\HTMLDocument;
 use Panda\Ui\Html\HTMLElement;
 
@@ -23,16 +31,24 @@ class Login extends HTMLElement
     const LGN_TYPE_DIALOG = 'dialog';
 
     /**
-     * The header element.
-     *
-     * @type HTMLElement
-     */
-    private $header;
-
-    /**
      * @type HTMLFormFactoryInterface
      */
     private $formFactory;
+
+    /**
+     * @var Translator
+     */
+    private $translator;
+
+    /**
+     * @var LoginSettings
+     */
+    private $settings;
+
+    /**
+     * @var \DOMNode
+     */
+    private $htmlNode;
 
     /**
      * Login constructor.
@@ -45,9 +61,13 @@ class Login extends HTMLElement
         // Set form factory
         $FormFactory->setHTMLDocument($HTMLDocument);
         $this->formFactory = $FormFactory;
+        $this->htmlNode = $HTMLDocument->select('html')->item(0);
+
+        // Create translator
+        $this->translator = new Translator(new JsonProcessor(__DIR__ . '/../../../lang/'));
 
         // Create HTMLElement
-        parent::__construct($HTMLDocument, $name = 'div', $value = '', $id = '', $class = 'loginBox');
+        parent::__construct($HTMLDocument, $name = 'div', $value = '', $id = '', $class = 'loginBox-login-box-container');
     }
 
     /**
@@ -55,38 +75,53 @@ class Login extends HTMLElement
      *
      * @param string $username
      * @param string $loginType
-     * @param string $returnUrl
      *
      * @return $this
+     *
+     * @throws Exception
      */
-    public function build($username = '', $loginType = self::LGN_TYPE_PAGE, $returnUrl = '')
+    public function build($username = '', $loginType = self::LGN_TYPE_PAGE)
     {
-        // Build header
-        $this->buildHeader();
+        // Check for settings
+        if (empty($this->getSettings())) {
+            throw new Exception('Login settings are not defined.');
+        }
+
+        // Append this to html
+        $this->getHTMLDocument()->getHTMLHandler()->append($this->htmlNode, $this);
+
+        // Load html into the container
+        $html = file_get_contents(__DIR__ . '/../../../assets/html/login.html');
+        $this->innerHTML($html);
+
+        // Append resources
+        $this->appendResources();
 
         // Build main body
-        $this->buildMainForm($username, $loginType, $returnUrl);
+        $this->buildLoginForm($username, $loginType);
 
-        // Build footer
-        $this->buildFooter($returnUrl);
+        // Translate the entire box
+        $this->translate();
 
         return $this;
     }
 
     /**
-     * Build the box header.
+     * Append Javascript and css to the loginbox.
      *
      * @return $this
      */
-    private function buildHeader()
+    private function appendResources()
     {
-        // Header container
-        $this->header = $this->getHTMLDocument()->create('div', '', '', 'header');
-        $this->append($this->header);
+        // Append script
+        $loginbox_js = file_get_contents(__DIR__ . '/../../../assets/js/loginbox.js');
+        $script = $this->getHTMLDocument()->create('script', $loginbox_js);
+        $this->prepend($script);
 
-        // Login Dialog Title
-        $dialogTitle = $this->getHTMLDocument()->create('div', 'Account Login', '', 'ltitle');
-        $this->header->append($dialogTitle);
+        // Append css
+        $loginbox_css = file_get_contents(__DIR__ . '/../../../assets/css/loginbox.css');
+        $style = $this->getHTMLDocument()->create('style', $loginbox_css);
+        $this->prepend($style);
 
         return $this;
     }
@@ -94,121 +129,47 @@ class Login extends HTMLElement
     /**
      * Build the main dialog form.
      *
-     * @param string $username   The default username value for the input.
-     * @param string $logintype  The login dialog type.
-     * @param string $return_url Provide a redirect url after successful login.
+     * @param string $username  The default username value for the input.
+     * @param string $logintype The login dialog type.
      *
      * @return $this
      */
-    private function buildMainForm($username = '', $logintype = self::LGN_TYPE_PAGE, $return_url = '')
+    private function buildLoginForm($username = '', $logintype = self::LGN_TYPE_PAGE)
     {
-        // Main Container
-        $mainContainer = $this->getHTMLDocument()->create('div', '', '', 'main');
-        $this->append($mainContainer);
-
-        // Build social login
-        $socialLoginContainer = $this->getHTMLDocument()->create('div', '', '', 'social');
-        $mainContainer->append($socialLoginContainer);
+        // Form Container
+        $formContainer = $this->getHTMLDocument()->select('.login-box .login-container .login-box-form-container')->item(0);
 
         // Build login form
-        $loginForm = $this->getFormFactory()->buildForm('loginForm', '/login', true, false);
-        $mainContainer->append($loginForm);
+        $loginForm = $this->getFormFactory()->buildForm('login-form', $this->getSettings()->getLoginUrl(), true, false);
+        $this->getHTMLHandler()->append($formContainer, $loginForm);
 
         // Set login type or return url to dialog
-        if (empty($return_url)) {
-            $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'hidden', $name = 'logintype', $value = $logintype, $id = '', $class = '', $autofocus = false, $required = false);
-            $loginForm->append($input);
-        } else {
-            $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'hidden', $name = 'return_url', $value = $return_url, $id = '', $class = '', $autofocus = false, $required = false);
+        $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'hidden', $name = 'logintype', $value = $logintype, $id = '', $class = '', $autofocus = false, $required = false);
+        $loginForm->append($input);
+        if (!empty($this->getSettings()->getLoginReturnUrl())) {
+            $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'hidden', $name = 'return_url', $value = $this->getSettings()->getLoginReturnUrl(), $id = '', $class = '', $autofocus = false, $required = false);
             $loginForm->append($input);
         }
-
-        // Form container
-        $formContainer = $this->getHTMLDocument()->create('div', '', '', 'formContainer');
-        $loginForm->append($formContainer);
+        if ($this->getSettings()->isRememberMe()) {
+            $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'hidden', $name = 'rememberme', $value = '1', $id = '', $class = '', $autofocus = false, $required = false);
+            $loginForm->append($input);
+        }
 
         // Username
         $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'text', $name = 'username', $value = $username, $id = '', $class = 'lpinp', $autofocus = true, $required = true);
         $input->attr('placeholder', ucfirst('username'));
-        $formContainer->append($input);
+        $loginForm->append($input);
 
         // Password
         $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'password', $name = 'password', $value = '', $id = '', $class = 'lpinp', $autofocus = false, $required = true);
         $input->attr('placeholder', ucfirst('password'));
-        $formContainer->append($input);
-
-        // Remember me container
-        $rcont = $this->getHTMLDocument()->create('div', '', '', 'rcont');
-        $formContainer->append($rcont);
-
-        // Public session
-        $rsession = $this->getHTMLDocument()->create('div', '', 'rsession', 'rocnt selected');
-        $rcont->append($rsession);
-
-        $ricnt = $this->getHTMLDocument()->create('div', '', '', 'ricnt');
-        $rsession->append($ricnt);
-
-        $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'radio', $name = 'rememberme', $value = 'off', $id = '', $class = 'lpchk', $autofocus = false, $required = false);
-        $input->attr('checked', true);
-        $ricnt->append($input);
-        $label = $loginForm->getHTMLFormFactory()->buildLabel($text = 'This Session Only', $input->attr('id'), $class = 'lplbl');
-        $ricnt->append($label);
-
-        // Private session
-        $rsession = $this->getHTMLDocument()->create('div', '', 'rtrust', 'rocnt');
-        $rcont->append($rsession);
-
-        $ricnt = $this->getHTMLDocument()->create('div', '', '', 'ricnt');
-        $rsession->append($ricnt);
-
-        $input = $loginForm->getHTMLFormFactory()->buildInput($type = 'radio', $name = 'rememberme', $value = 'on', $id = '', $class = 'lpchk', $autofocus = false, $required = false);
-        $ricnt->append($input);
-        $label = $loginForm->getHTMLFormFactory()->buildLabel($text = 'One month', $input->attr('id'), $class = 'lplbl');
-        $ricnt->append($label);
-
-        // Remember me notes
-        $rnotes = $this->getHTMLDocument()->create('div', '', '', 'rnotes');
-        $formContainer->append($rnotes);
-
-        $nt = $this->getHTMLDocument()->create('div', 'This is a public computer.', '', 'nt rsession selected');
-        $rnotes->append($nt);
-
-        $nt = $this->getHTMLDocument()->create('div', 'I trust this computer. I will be logged out after one month of inactivity.', '', 'nt rtrust');
-        $rnotes->append($nt);
+        $loginForm->append($input);
 
         // Login button
         $input = $loginForm->getHTMLFormFactory()->buildSubmitButton('Login');
-        $formContainer->append($input);
+        $loginForm->append($input);
 
         return $this;
-    }
-
-    /**
-     * Build the dialog footer.
-     *
-     * @param string $returnUrl Sets the register dialog link with the given return url after registration.
-     */
-    private function buildFooter($returnUrl = '')
-    {
-        // Footer container
-        $footer = $this->getHTMLDocument()->create('div', '', '', 'footer');
-        $this->append($footer);
-
-        // Register link
-        $href = '/register' . (empty($returnUrl) ?: '?return_url=' . $returnUrl);
-        $wl = $this->getHTMLDocument()->getHTMLFactory()->buildWeblink($href, '_self', 'Create an Account', '', '');
-        $hlink = $this->getHTMLDocument()->create('h4', $wl, '', 'register');
-        $footer->append($hlink);
-
-        // Bull
-        $bull = $this->getHTMLDocument()->create('span');
-        $footer->append($bull);
-        $bull->innerHTML(' • ');
-
-        // Forgot password link
-        $wl = $this->getHTMLDocument()->getHTMLFactory()->buildWeblink('/login/forgot', '_self', "I can't login", '', '');
-        $hlink = $this->getHTMLDocument()->create('h4', $wl, '', 'forgot');
-        $footer->append($hlink);
     }
 
     /**
@@ -217,5 +178,44 @@ class Login extends HTMLElement
     public function getFormFactory()
     {
         return $this->formFactory;
+    }
+
+    /**
+     * @return LoginSettings
+     */
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+    /**
+     * @param LoginSettings $settings
+     *
+     * @return Login
+     */
+    public function setSettings($settings)
+    {
+        $this->settings = $settings;
+
+        return $this;
+    }
+
+    /**
+     * Translate the entire box.
+     *
+     * @return $this
+     */
+    private function translate()
+    {
+        // Get all data-translate elements
+        $translatable = $this->select('*[data-translate]');
+        foreach ($translatable as $item) {
+            $key = $this->getHTMLHandler()->attr($item, 'data-translate');
+            $translation = $this->translator->translate($key, 'translations', $this->getSettings()->getLocale());
+            $this->getHTMLHandler()->attr($item, 'data-translate', null);
+            $this->getHTMLHandler()->nodeValue($item, $translation);
+        }
+
+        return $this;
     }
 }

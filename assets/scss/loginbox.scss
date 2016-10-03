@@ -1,0 +1,210 @@
+.loginBox-login-box-container {
+    & {
+        font-family: 'Open Sans', sans-serif;
+        position: relative;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 25px;
+        text-align: center;
+        min-width: 250px;
+        max-width: 450px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        overflow: auto;
+    }
+    .login-box-header {
+        & {
+            overflow: auto;
+        }
+        .login-box-header-title {
+            line-height: 60px;
+            font-weight: normal;
+            font-size: 2em;
+            color: #555459;
+            margin: 10px 0;
+            padding: 0 10px;
+        }
+    }
+    .login-box-main {
+        & {
+            clear: both;
+            overflow: auto;
+        }
+        .login-box-social {
+            & {
+                overflow: auto;
+                max-width: 300px;
+                margin: 0 auto 10px;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+            }
+            .btn_social {
+                float: left;
+                margin: 5px;
+                width: 40px;
+                height: 40px;
+                cursor: pointer;
+                background: url('%{media}/login/socialIcons.svg') no-repeat 0 0;
+                background-size: cover;
+                border-radius: 3px;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                opacity: 1;
+                transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+            }
+            .btn_social.fb {
+                background-color: #3c589a;
+                background-position: 0 0;
+            }
+            .btn_social.gp {
+                background-color: #dd4b39;
+                background-position: 0px -40px;
+            }
+            .btn_social.gh {
+                background-color: #5e6570;
+                background-position: 0px -80px;
+            }
+            .btn_social:hover {
+                opacity: 0.75;
+                transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+            }
+        }
+        .login_or {
+            margin-top: 10px;
+            color: #555459;
+            text-align: center;
+        }
+        .formContainer {
+            padding: 5px;
+        }
+        .lpinp {
+            width: 100%;
+            padding: 10px 12px;
+            margin: 8px 0;
+            font-size: 1.2em;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+            border-color: #777;
+            color: #777;
+            outline-color: #ccc;
+        }
+        button[type='submit'] {
+            padding: 8px 10px;
+            width: 150px;
+            margin: 15px auto 0;
+            font-size: 1.1em;
+            border-color: rgba(0, 0, 0, 0.1);
+            background: #ff5252;
+            background-image: -webkit-linear-gradient(top, #ff6161 0%, #ff4343 100%);
+            background-image: -o-linear-gradient(top, #ff6161 0%, #ff4343 100%);
+            background-image: linear-gradient(to bottom, #ff6161 0%, #ff4343 100%);
+            background-repeat: repeat-x;
+            color: #fff;
+            transition: background .2s ease-in-out;
+            -webkit-transition: background .2s ease-in-out;
+            -moz-transition: background .2s ease-in-out;
+        }
+        button[type='submit']:hover {
+            border-color: rgba(0, 0, 0, 0.1);
+            background: #ff4343;
+            background-image: -webkit-linear-gradient(top, #ff5252 0%, #ff2e2e 100%);
+            background-image: -o-linear-gradient(top, #ff5252 0%, #ff2e2e 100%);
+            background-image: linear-gradient(to bottom, #ff5252 0%, #ff2e2e 100%);
+            background-repeat: repeat-x;
+            color: white;
+            outline: none;
+            transition: background .2s ease-in-out;
+            -webkit-transition: background .2s ease-in-out;
+            -moz-transition: background .2s ease-in-out;
+        }
+        .rcont {
+            margin-top: 10px;
+            overflow: auto;
+        }
+        .rocnt {
+            width: 50%;
+            float: left;
+            padding: 5px 10px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        .rocnt .ricnt {
+            background: linear-gradient(#fefefe, #f0f0f0);
+            border: 1px solid #ccc;
+            border-color: #cdced0 #c5c6c8 #b6b7b9;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+        }
+        .rocnt .ricnt label {
+            display: block;
+            padding: 10px 5px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+        }
+        .rocnt.selected .ricnt {
+            background: linear-gradient(rgb(45, 171, 220), rgb(14, 149, 211));
+            border: 1px solid rgb(10, 104, 146);
+            color: #fff;
+        }
+        .rocnt .ricnt input[type='radio'] {
+            display: none;
+        }
+        .rnotes {
+            color: rgb(10, 104, 146);
+            font-size: 0.9em;
+            text-align: center;
+            padding-top: 5px;
+            clear: both;
+        }
+        .rnotes .nt {
+            display: none;
+        }
+        .rnotes .nt.selected {
+            display: inline-block;
+        }
+    }
+    .footer {
+        & {
+            border-top: 1px solid #ccc;
+            margin-top: 10px;
+            color: #777;
+            font-weight: normal;
+            padding-top: 10px;
+        }
+        h4 {
+            text-align: left;
+            display: inline-block;
+            padding: 0 5px;
+            margin: 5px 0;
+        }
+        .register a {
+            color: #555459;
+            font-weight: bold;
+        }
+        .register:hover a {
+            text-decoration: underline;
+        }
+        .forgot a {
+            color: #777;
+        }
+        .forgot:hover a {
+            text-decoration: underline;
+        }
+    }
+}

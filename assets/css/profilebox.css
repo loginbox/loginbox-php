@@ -1,0 +1,67 @@
+.profileBox {
+  overflow: auto; }
+.profileBox .viewPanel {
+  display: none;
+  background: #fff;
+  overflow: auto;
+  padding: 10px;
+  min-width: 200px; }
+.profileBox .viewPanel.edit {
+  min-width: 300px; }
+.profileBox .viewPanel.open {
+  display: block; }
+.profileBox .profileMenu {
+  list-style-type: none;
+  margin: 0;
+  float: right;
+  padding: 0 0 0 20px;
+  min-width: 180px; }
+.profileBox .profileMenu .title {
+  margin: 0;
+  font-size: 11px;
+  font-weight: normal;
+  color: #999;
+  padding: 3px 0; }
+.profileBox .profileMenu .mitem {
+  padding: 3px 8px;
+  display: block;
+  cursor: pointer;
+  color: #555459;
+  font-size: 12px; }
+.profileBox .profileMenu .mitem:hover {
+  background: #efefef; }
+.profileBox .profileMenu .mitem.selected {
+  background: #efefef;
+  font-weight: bold; }
+.profileBox .profileMenu .mitem.default {
+  border-left: 3px solid #999;
+  padding-left: 5px; }
+.profileBox .profileMenu .mitem a {
+  display: block;
+  color: #555459; }
+.profileBox .profileMenu .mseparator {
+  height: 1px;
+  background-color: #ccc;
+  margin: 5px 0; }
+.profileBox .profileMenu .teams .list {
+  max-height: 150px;
+  overflow: auto; }
+.profileBox .logoutButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  width: 98%;
+  text-align: left;
+  font-size: 12px;
+  color: #555459; }
+
+@media screen and (max-width: 500px) {
+  .profileBox .profileMenu {
+    float: none;
+    clear: both;
+    padding: 0;
+    margin: 15px auto 0; } }
+
+/*# sourceMappingURL=profilebox.css.map */

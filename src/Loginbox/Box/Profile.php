@@ -1,11 +1,15 @@
 <?php
 
-declare(strict_types = 1);
+/*
+ * This file is part of loginBox php library.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Loginbox\Box;
 
 use Panda\Ui\Contracts\Factories\HTMLFormFactoryInterface;
-use Panda\Ui\Html\Controls\Form;
 use Panda\Ui\Html\HTMLDocument;
 use Panda\Ui\Html\HTMLElement;
 

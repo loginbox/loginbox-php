@@ -1,0 +1,21 @@
+{
+    "loginbox": {
+        "login": {
+            "header": {
+                "title": "LOGIN"
+            },
+            "form": {
+                "username": "Username",
+                "password": "Password",
+                "session_title": "This session only",
+                "session_desc": "This is a public computer.",
+                "rememberme_title": "One month",
+                "rememberme_desc": "I trust this computer. I will be logged out after one month of inactivity."
+            },
+            "footer": {
+                "register": "Sign Up",
+                "cant_login": "I can't login"
+            }
+        }
+    }
+}

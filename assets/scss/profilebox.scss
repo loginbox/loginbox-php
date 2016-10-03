@@ -1,0 +1,87 @@
+.profileBox {
+    & {
+        overflow: auto;
+    }
+    .viewPanel {
+        display: none;
+        background: #fff;
+        overflow: auto;
+        padding: 10px;
+        min-width: 200px;
+    }
+    .viewPanel.edit {
+        min-width: 300px;
+    }
+    .viewPanel.open {
+        display: block;
+    }
+    .profileMenu {
+        & {
+            list-style-type: none;
+            margin: 0;
+            float: right;
+            padding: 0 0 0 20px;
+            min-width: 180px;
+        }
+        .title {
+            margin: 0;
+            font-size: 11px;
+            font-weight: normal;
+            color: #999;
+            padding: 3px 0;
+        }
+        .mitem {
+            padding: 3px 8px;
+            display: block;
+            cursor: pointer;
+            color: #555459;
+            font-size: 12px;
+        }
+        .mitem:hover {
+            background: #efefef;
+        }
+        .mitem.selected {
+            background: #efefef;
+            font-weight: bold;
+        }
+        .mitem.default {
+            border-left: 3px solid #999;
+            padding-left: 5px;
+        }
+        .mitem a {
+            display: block;
+            color: #555459;
+        }
+        .mseparator {
+            height: 1px;
+            background-color: #ccc;
+            margin: 5px 0;
+        }
+        .teams .list {
+            max-height: 150px;
+            overflow: auto;
+        }
+    }
+    .logoutButton {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        width: 98%;
+        text-align: left;
+        font-size: 12px;
+        color: #555459;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .profileBox {
+        .profileMenu {
+            float: none;
+            clear: both;
+            padding: 0;
+            margin: 15px auto 0;
+        }
+    }
+}
