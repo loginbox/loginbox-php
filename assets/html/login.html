@@ -1,28 +1,56 @@
-<div class="login-box">
-    <div class="login-container">
-        <div class="login-box-header">
-            <div class="login-box-header-title" data-translate="loginbox.login.header.title"></div>
+<div class="identity-login-box">
+    <div class="box-header">
+        <div class="login-ico"></div>
+        <div class="btn-close"></div>
+    </div>
+    <div class="login-register-container">
+        <div class="box-main login">
+            <div class="bx-hd-title" data-translate="loginbox.login.header.title"></div>
+            <div class="form-container"></div>
         </div>
-        <div class="login-box-main">
-            <div class="social-boxes">
-                <a class="btn-social facebook" target="_self"></a>
-                <a class="btn-social google-plus" target="_self"></a>
-                <a class="btn-social linkedin" target="_self"></a>
-                <a class="btn-social twitter" target="_self"></a>
-                <a class="btn-social github" target="_self"></a>
+        <div class="box-main register hidden">
+            <div class="bx-hd-title" data-translate="loginbox.register.header.title"></div>
+            <div class="form-container"></div>
+            <a href="" target="_blank" class="terms">
+                <div class="ico"></div>
+                <div class="bx-sub-title" data-translate="loginbox.register.terms"></div>
+            </a>
+        </div>
+        <div class="social-container hidden">
+            <div class="social_or" data-translate="loginbox.social.or"></div>
+            <div class="social">
+                <a class="btn_social fb" target="_self"></a>
+                <a class="btn_social gp" target="_self"></a>
+                <a class="btn_social gh" target="_self"></a>
+                <a class="btn_social tt" target="_self"></a>
+                <a class="btn_social lin" target="_self"></a>
+                <a class="btn_social win" target="_self"></a>
             </div>
-            <div class="login-box-form-container"></div>
-        </div>
-        <div class="login-box-footer">
-            <h4 class="register" data-translate="loginbox.login.footer.register"></h4>
-            <span> • </span>
-            <h4 class="forgot" data-translate="loginbox.login.footer.cant_login"></h4>
         </div>
     </div>
-    <div class="register-container hidden-elem">
+    <div class="box-main success hidden">
+        <div class="ico"></div>
+        <div class="bx-succ-title"></div>
     </div>
-    <div class="forgot-pw-container hidden-elem">
+    <div class="box-main recover hidden">
+        <div class="bx-hd-title" data-translate="loginbox.recover.header.title"></div>
+        <div class="bx-sub-title" data-translate="loginbox.recover.header.subtitle"></div>
+        <div class="form-container"></div>
+        <div class="bx-sub-title action reset" data-translate="loginbox.recover.header.reset_code"></div>
     </div>
-    <div class="reset-pw-container hidden-elem">
+    <div class="box-main reset hidden">
+        <div class="bx-hd-title" data-translate="loginbox.reset.header.title"></div>
+        <div class="bx-sub-title" data-translate="loginbox.reset.header.subtitle"></div>
+        <div class="form-container"></div>
+        <div class="bx-sub-title action recover" data-translate="loginbox.reset.header.no_reset_code"></div>
+    </div>
+    <div class="box-footer">
+        <div class="ft-lnk hidden login" data-fref="login"
+             data-translate="loginbox.footer.login"></div>
+        <div class="ft-lnk-bull login hidden">&bull;</div>
+        <div class="ft-lnk register" data-fref="register"
+             data-translate="loginbox.footer.register"></div>
+        <div class="ft-lnk-bull recover register">&bull;</div>
+        <div class="ft-lnk recover" data-fref="recover" data-translate="loginbox.footer.recover"></div>
     </div>
 </div>

@@ -1,21 +1,58 @@
 {
     "loginbox": {
+        "social": {
+            "or": "Or you can use one of the following social networks"
+        },
         "login": {
             "header": {
-                "title": "LOGIN"
+                "title": "Login"
             },
             "form": {
-                "username": "Username",
+                "username": "Email or username",
                 "password": "Password",
-                "session_title": "This session only",
-                "session_desc": "This is a public computer.",
-                "rememberme_title": "One month",
-                "rememberme_desc": "I trust this computer. I will be logged out after one month of inactivity."
-            },
-            "footer": {
-                "register": "Sign Up",
-                "cant_login": "I can't login"
+                "submit": "Login"
             }
+        },
+        "register": {
+            "header": {
+                "title": "Sign Up"
+            },
+            "terms": "By signing up you agree to our terms of use and our privacy policy",
+            "form": {
+                "full_name": "Full name",
+                "email": "Email",
+                "password": "Password",
+                "submit": "Sign Up"
+            }
+        },
+        "recover": {
+            "header": {
+                "title": "Password Recovery",
+                "subtitle": "Please enter your email and we will send you directions on how to reset your password",
+                "reset_code": "I have a reset code"
+            },
+            "form": {
+                "email": "Recovery email",
+                "submit": "Recover"
+            }
+        },
+        "reset": {
+            "header": {
+                "title": "Password Reset",
+                "subtitle": "Enter the reset code that you received and your new password",
+                "no_reset_code": "I don't have a reset code"
+            },
+            "form": {
+                "challenge": "Token",
+                "password": "Password",
+                "password_confirm": "Re-type password",
+                "submit": "Reset"
+            }
+        },
+        "footer": {
+            "login": "Login",
+            "register": "Sign Up",
+            "recover": "Forgot my Password"
         }
     }
 }

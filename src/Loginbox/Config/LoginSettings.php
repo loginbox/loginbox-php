@@ -28,7 +28,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @var string
      */
-    protected $login_return_url = '';
+    protected $login_redirect_url = '';
 
     /**
      * @var string
@@ -38,17 +38,27 @@ class LoginSettings extends GlobalSettings
     /**
      * @var string
      */
-    protected $register_return_url = '';
+    protected $register_redirect_url = '';
 
     /**
      * @var string
      */
-    protected $forgot_password_url;
+    protected $register_terms_url = '';
+
+    /**
+     * @var bool
+     */
+    protected $login_after_registration = false;
 
     /**
      * @var string
      */
-    protected $reset_password_url;
+    protected $password_recovery_url = '';
+
+    /**
+     * @var string
+     */
+    protected $password_reset_url = '';
 
     /**
      * @return boolean
@@ -85,17 +95,17 @@ class LoginSettings extends GlobalSettings
     /**
      * @return string
      */
-    public function getLoginReturnUrl(): string
+    public function getLoginRedirectUrl(): string
     {
-        return $this->login_return_url;
+        return $this->login_redirect_url;
     }
 
     /**
-     * @param string $login_return_url
+     * @param string $login_redirect_url
      */
-    public function setLoginReturnUrl(string $login_return_url)
+    public function setLoginRedirectUrl(string $login_redirect_url)
     {
-        $this->login_return_url = $login_return_url;
+        $this->login_redirect_url = $login_redirect_url;
     }
 
     /**
@@ -117,48 +127,80 @@ class LoginSettings extends GlobalSettings
     /**
      * @return string
      */
-    public function getRegisterReturnUrl(): string
+    public function getRegisterRedirectUrl(): string
     {
-        return $this->register_return_url;
+        return $this->register_redirect_url;
     }
 
     /**
-     * @param string $register_return_url
+     * @param string $register_redirect_url
      */
-    public function setRegisterReturnUrl(string $register_return_url)
+    public function setRegisterRedirectUrl(string $register_redirect_url)
     {
-        $this->register_return_url = $register_return_url;
-    }
-
-    /**
-     * @return string
-     */
-    public function getForgotPasswordUrl()
-    {
-        return $this->forgot_password_url;
-    }
-
-    /**
-     * @param string $forgot_password_url
-     */
-    public function setForgotPasswordUrl($forgot_password_url)
-    {
-        $this->forgot_password_url = $forgot_password_url;
+        $this->register_redirect_url = $register_redirect_url;
     }
 
     /**
      * @return string
      */
-    public function getResetPasswordUrl()
+    public function getRegisterTermsUrl(): string
     {
-        return $this->reset_password_url;
+        return $this->register_terms_url;
     }
 
     /**
-     * @param string $reset_password_url
+     * @param string $register_terms_url
      */
-    public function setResetPasswordUrl($reset_password_url)
+    public function setRegisterTermsUrl(string $register_terms_url)
     {
-        $this->reset_password_url = $reset_password_url;
+        $this->register_terms_url = $register_terms_url;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isLoginAfterRegistration(): bool
+    {
+        return $this->login_after_registration;
+    }
+
+    /**
+     * @param boolean $login_after_registration
+     */
+    public function setLoginAfterRegistration(bool $login_after_registration)
+    {
+        $this->login_after_registration = $login_after_registration;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPasswordRecoveryUrl(): string
+    {
+        return $this->password_recovery_url;
+    }
+
+    /**
+     * @param string $password_recovery_url
+     */
+    public function setPasswordRecoveryUrl(string $password_recovery_url)
+    {
+        $this->password_recovery_url = $password_recovery_url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPasswordResetUrl(): string
+    {
+        return $this->password_reset_url;
+    }
+
+    /**
+     * @param string $password_reset_url
+     */
+    public function setPasswordResetUrl(string $password_reset_url)
+    {
+        $this->password_reset_url = $password_reset_url;
     }
 }

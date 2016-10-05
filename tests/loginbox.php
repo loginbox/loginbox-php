@@ -17,8 +17,22 @@ $settings = new \Loginbox\Config\LoginSettings();
 $settings->setLocale('en_US');
 $login->setSettings($settings);
 
+// Set theme settings
+$themeSettings = new \Loginbox\Config\ThemeSettings();
+$themeSettings->setLogoUrl('https://ratein.io/assets/images/logo.svg');
+$themeSettings->setThemeColor('#335f7f');
+$login->setThemeSettings($themeSettings);
+
+// Set social settings
+$socialSettings = new \Loginbox\Config\SocialSettings();
+$socialSettings->setEnabled(true);
+$socialSettings->setSocialNetworkUrl(\Loginbox\Config\SocialSettings::SC_FACEBOOK, 'https://facebook.com');
+$socialSettings->setSocialNetworkUrl(\Loginbox\Config\SocialSettings::SC_GOOGLE, 'https://google.com');
+$socialSettings->setSocialNetworkUrl(\Loginbox\Config\SocialSettings::SC_LINKEDIN, 'https://linkedin.com');
+$login->setSocialSettings($socialSettings);
+
 // Build loginbox
-$login->build();
+$login->build('', \Loginbox\Box\Login::LB_MODE_LOGIN);
 $htmlDocument->getBody()->append($login);
 
 echo $htmlDocument->getHTML();

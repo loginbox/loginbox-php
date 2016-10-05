@@ -1,210 +1,313 @@
-.loginBox-login-box-container {
+.identity-login-box-container {
     & {
-        font-family: 'Open Sans', sans-serif;
+        font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 13px !important;
+        -webkit-font-smoothing: antialiased;
         position: relative;
-        background: rgba(255, 255, 255, 0.9);
+        background: #fff;
         padding: 25px;
         text-align: center;
         min-width: 250px;
-        max-width: 450px;
+        max-width: 350px;
         margin: 0 auto;
         box-sizing: border-box;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         overflow: auto;
+        color: #5e6570;
     }
-    .login-box-header {
+    .bx-hd-title {
+        text-transform: uppercase;
+        color: #ff5252;
+        font-size: 1.2em;
+        margin: 10px 0;
+        font-weight: bold;
+    }
+    .bx-sub-title {
+        color: #5e6570;
+        font-size: 1em;
+        margin: 5px 0;
+        font-weight: normal;
+    }
+    .bx-sub-title.action {
+        color: #ff5252;
+        cursor: pointer;
+    }
+    .box-header {
         & {
             overflow: auto;
         }
-        .login-box-header-title {
-            line-height: 60px;
-            font-weight: normal;
-            font-size: 2em;
-            color: #555459;
-            margin: 10px 0;
-            padding: 0 10px;
+        .login-ico {
+            width: 60px;
+            height: 60px;
+            margin: 10px auto;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+        }
+        .login-ico:empty {
+            background: #f3f3f3 url('https://cdn.loginbox.io/styleguide/loginbox/login-profile-default.svg') no-repeat center;
+            background-size: cover;
+        }
+        .login-ico img {
+            width: inherit;
+            height: inherit;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+        }
+        .btn-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: url('https://cdn.loginbox.io/styleguide/loginbox/close-x.svg') no-repeat center;
+            background-position: 0px -24px;
+            background-size: cover;
+            cursor: pointer;
+            display: none;
         }
     }
-    .login-box-main {
+    .identity-login-box.dialog .box-header .btn-close {
+        display: block;
+    }
+    .box-main {
         & {
-            clear: both;
-            overflow: auto;
         }
-        .login-box-social {
+        .form-container {
             & {
-                overflow: auto;
-                max-width: 300px;
-                margin: 0 auto 10px;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                align-content: center;
+                padding: 5px;
             }
-            .btn_social {
-                float: left;
-                margin: 5px;
-                width: 40px;
-                height: 40px;
-                cursor: pointer;
-                background: url('%{media}/login/socialIcons.svg') no-repeat 0 0;
-                background-size: cover;
+            .inp-container {
+                border: 1px solid #999;
                 border-radius: 3px;
-                -webkit-border-radius: 3px;
                 -moz-border-radius: 3px;
-                opacity: 1;
+                -webkit-border-radius: 3px;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                margin: 8px 0;
+            }
+            .lpinp {
+                width: 100%;
+                height: 36px;
+                padding: 10px 12px;
+                margin: 0;
+                font-size: 14px;
+                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                color: #777;
+                outline: none;
+                border-radius: 3px;
+                -moz-border-radius: 3px;
+                -webkit-border-radius: 3px;
+            }
+            .inp-container .lpinp {
+                border: none;
+                border-bottom: 1px solid #ddd;
+            }
+            .inp-container .lpinp:last-child {
+                border-bottom: none;
+            }
+            .lpbtn {
+                padding: 8px 30px;
+                max-width: 45%;
+                margin: 8px auto;
+                font-size: 13px;
+                border-color: rgba(0, 0, 0, 0.1);
+                background: #ff5252;
+                color: #fff;
+                transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+                border-radius: 3px;
+                -moz-border-radius: 3px;
+                -webkit-border-radius: 3px;
+            }
+            .lpbtn:hover {
+                border-color: rgba(0, 0, 0, 0.1);
+                color: white;
+                outline: none;
                 transition: all .2s ease-in-out;
                 -webkit-transition: all .2s ease-in-out;
                 -moz-transition: all .2s ease-in-out;
             }
-            .btn_social.fb {
-                background-color: #3c589a;
-                background-position: 0 0;
+            .ntf {
+                color: #777;
             }
-            .btn_social.gp {
-                background-color: #dd4b39;
-                background-position: 0px -40px;
+            .ntf.error {
+                color: #c00403;
             }
-            .btn_social.gh {
-                background-color: #5e6570;
-                background-position: 0px -80px;
+        }
+        &.register .terms {
+            & {
+                margin: 15px 0;
+                text-decoration: none;
             }
-            .btn_social:hover {
-                opacity: 0.75;
+            .ico {
+                float: left;
+                width: 24px;
+                height: 24px;
+                background: url('https://cdn.loginbox.io/styleguide/loginbox/terms-ico.svg') no-repeat center;
+                background-size: cover;
+                margin: 3px 0;
+            }
+            .bx-sub-title {
+                font-size: 0.9em;
+                color: #999;
+                transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+            }
+            &:hover .bx-sub-title {
+                color: #555;
                 transition: all .2s ease-in-out;
                 -webkit-transition: all .2s ease-in-out;
                 -moz-transition: all .2s ease-in-out;
             }
         }
-        .login_or {
-            margin-top: 10px;
+        &.success {
+            .ico {
+                width: 70%;
+                height: 80px;
+                margin: 20px auto;
+                background: url('https://cdn.loginbox.io/styleguide/loginbox/success-tick.svg') no-repeat center;
+                background-size: contain;
+            }
+            .bx-succ-title {
+                margin: 20px 0;
+                font-size: 1.15em;
+                text-align: center;
+                color: #42b549;
+            }
+        }
+    }
+    .social-container {
+        & {
+            overflow: auto;
+            max-width: 300px;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+        }
+        .social_or {
+            margin: 10px 0;
             color: #555459;
             text-align: center;
         }
-        .formContainer {
-            padding: 5px;
-        }
-        .lpinp {
-            width: 100%;
-            padding: 10px 12px;
-            margin: 8px 0;
-            font-size: 1.2em;
-            box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            border-radius: 3px;
-            -moz-border-radius: 3px;
-            -webkit-border-radius: 3px;
-            border-color: #777;
-            color: #777;
-            outline-color: #ccc;
-        }
-        button[type='submit'] {
-            padding: 8px 10px;
-            width: 150px;
-            margin: 15px auto 0;
-            font-size: 1.1em;
-            border-color: rgba(0, 0, 0, 0.1);
-            background: #ff5252;
-            background-image: -webkit-linear-gradient(top, #ff6161 0%, #ff4343 100%);
-            background-image: -o-linear-gradient(top, #ff6161 0%, #ff4343 100%);
-            background-image: linear-gradient(to bottom, #ff6161 0%, #ff4343 100%);
-            background-repeat: repeat-x;
-            color: #fff;
-            transition: background .2s ease-in-out;
-            -webkit-transition: background .2s ease-in-out;
-            -moz-transition: background .2s ease-in-out;
-        }
-        button[type='submit']:hover {
-            border-color: rgba(0, 0, 0, 0.1);
-            background: #ff4343;
-            background-image: -webkit-linear-gradient(top, #ff5252 0%, #ff2e2e 100%);
-            background-image: -o-linear-gradient(top, #ff5252 0%, #ff2e2e 100%);
-            background-image: linear-gradient(to bottom, #ff5252 0%, #ff2e2e 100%);
-            background-repeat: repeat-x;
-            color: white;
-            outline: none;
-            transition: background .2s ease-in-out;
-            -webkit-transition: background .2s ease-in-out;
-            -moz-transition: background .2s ease-in-out;
-        }
-        .rcont {
-            margin-top: 10px;
-            overflow: auto;
-        }
-        .rocnt {
-            width: 50%;
+        .btn_social {
             float: left;
-            padding: 5px 10px;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
-        }
-        .rocnt .ricnt {
-            background: linear-gradient(#fefefe, #f0f0f0);
-            border: 1px solid #ccc;
-            border-color: #cdced0 #c5c6c8 #b6b7b9;
+            margin: 5px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            background: url('https://cdn.loginbox.io/styleguide/social/img/social-sprite-light.svg') no-repeat;
+            background-size: cover;
             border-radius: 3px;
-            -moz-border-radius: 3px;
             -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            opacity: 1;
+            transition: all .2s ease-in-out;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
         }
-        .rocnt .ricnt label {
-            display: block;
-            padding: 10px 5px;
-            box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            -webkit-box-sizing: border-box;
+        .btn_social.fb {
+            background-color: #3c589a;
+            background-position: 0 0;
         }
-        .rocnt.selected .ricnt {
-            background: linear-gradient(rgb(45, 171, 220), rgb(14, 149, 211));
-            border: 1px solid rgb(10, 104, 146);
-            color: #fff;
+        .btn_social.gp {
+            background-color: #dd4b39;
+            background-position: 0px -40px;
         }
-        .rocnt .ricnt input[type='radio'] {
-            display: none;
+        .btn_social.gh {
+            background-color: #5e6570;
+            background-position: 0px -80px;
         }
-        .rnotes {
-            color: rgb(10, 104, 146);
-            font-size: 0.9em;
-            text-align: center;
-            padding-top: 5px;
-            clear: both;
+        .btn_social.tt {
+            background-color: #55acee;
+            background-position: 0px -120px;
         }
-        .rnotes .nt {
-            display: none;
+        .btn_social.lin {
+            background-color: #006fa6;
+            background-position: 0px -160px;
         }
-        .rnotes .nt.selected {
-            display: inline-block;
+        .btn_social.win {
+            background-color: #0078d7;
+            background-position: 0px -200px;
+        }
+        .btn_social:hover {
+            opacity: 0.75;
+            transition: all .2s ease-in-out;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
         }
     }
-    .footer {
+    .box-footer {
         & {
             border-top: 1px solid #ccc;
             margin-top: 10px;
+            padding-top: 10px;
             color: #777;
             font-weight: normal;
-            padding-top: 10px;
         }
-        h4 {
-            text-align: left;
+        .ft-lnk,
+        .ft-lnk-bull {
             display: inline-block;
-            padding: 0 5px;
             margin: 5px 0;
         }
-        .register a {
-            color: #555459;
-            font-weight: bold;
+        .ft-lnk {
+            cursor: pointer;
+            transition: all .2s ease-in-out;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
         }
-        .register:hover a {
+        .ft-lnk:hover {
             text-decoration: underline;
+            transition: all .2s ease-in-out;
+            -webkit-transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
         }
-        .forgot a {
-            color: #777;
-        }
-        .forgot:hover a {
-            text-decoration: underline;
+        .ft-lnk-bull {
+            margin: 5px;
         }
     }
+    .hidden {
+        display: none !important;
+    }
+}
+
+.login-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 400;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.login-popup {
+    position: absolute;
+    top: 15%;
+    left: 0;
+    background: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    box-shadow: 0 3px 25px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 3px 25px rgba(0, 0, 0, 0.3);
+}
+
+.popup-content {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
 }
