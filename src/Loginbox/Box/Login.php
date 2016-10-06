@@ -10,6 +10,7 @@
 namespace Loginbox\Box;
 
 use Exception;
+use InvalidArgumentException;
 use Loginbox\Config\LoginSettings;
 use Loginbox\Config\SocialSettings;
 use Loginbox\Config\ThemeSettings;
@@ -372,7 +373,7 @@ class Login extends HTMLElement
     {
         // Check arguments
         if (empty($mode)) {
-            throw new \InvalidArgumentException('There is no login mode selected.');
+            throw new InvalidArgumentException('There is no login mode selected.');
         }
 
         // Show box
@@ -380,16 +381,20 @@ class Login extends HTMLElement
         foreach ($boxes as $box) {
             $this->getHTMLHandler()->addClass($box, 'hidden');
         }
-        $selectedBox = $this->select('.identity-login-box .box-main.' . $mode)->item(0);
-        $this->getHTMLHandler()->removeClass($selectedBox, 'hidden');
+        $selectedBoxes = $this->select('.identity-login-box .box-main.' . $mode);
+        foreach ($selectedBoxes as $box) {
+            $this->getHTMLHandler()->removeClass($box, 'hidden');
+        }
 
         // Hide footer link
         $footerLinks = $this->select('.identity-login-box .box-footer .ft-lnk');
         foreach ($footerLinks as $footerLink) {
             $this->getHTMLHandler()->removeClass($footerLink, 'hidden');
         }
-        $selectedFooterLink = $this->select('.identity-login-box .box-footer .ft-lnk.' . $mode)->item(0);
-        $this->getHTMLHandler()->addClass($selectedFooterLink, 'hidden');
+        $selectedFooterLinks = $this->select('.identity-login-box .box-footer .ft-lnk.' . $mode);
+        foreach ($selectedFooterLinks as $footerLink) {
+            $this->getHTMLHandler()->addClass($footerLink, 'hidden');
+        }
     }
 
     /**
