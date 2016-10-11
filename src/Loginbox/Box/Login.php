@@ -36,6 +36,7 @@ class Login extends HTMLElement
     const LB_MODE_LOGIN = 'login';
     const LB_MODE_REGISTER = 'register';
     const LB_MODE_RECOVER = 'recover';
+    const LB_MODE_RESET = 'reset';
 
     /**
      * @type HTMLFormFactoryInterface
