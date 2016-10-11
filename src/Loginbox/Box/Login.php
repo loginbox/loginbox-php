@@ -319,7 +319,7 @@ class Login extends HTMLElement
         $inputContainer->append($input);
 
         // Password
-        $input = $form->getHTMLFormFactory()->buildInput($type = 'password', $name = 'password', $value = '', $id = '', $class = 'uiFormInput lpinp', $autofocus = false, $required = true);
+        $input = $form->getHTMLFormFactory()->buildInput($type = 'password', $name = 'password_confirm', $value = '', $id = '', $class = 'uiFormInput lpinp', $autofocus = false, $required = true);
         $input->attr('placeholder', ucfirst($this->translate('loginbox.reset.form.password_confirm')));
         $inputContainer->append($input);
 
