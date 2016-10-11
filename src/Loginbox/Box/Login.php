@@ -438,12 +438,14 @@ class Login extends HTMLElement
     private function buildSocialLogin()
     {
         // Check if it's enabled
+        $socialContainer = $this->select('.identity-login-box .login-register-container .social-container')->item(0);
         if (!$this->getSocialSettings()->isEnabled()) {
+            $this->getHTMLHandler()->remove($socialContainer);
+
             return;
         }
 
         // Enable social container
-        $socialContainer = $this->select('.identity-login-box .login-register-container .social-container')->item(0);
         $this->getHTMLHandler()->removeClass($socialContainer, 'hidden');
 
         // Get all social networks
@@ -457,7 +459,7 @@ class Login extends HTMLElement
             if (!empty($url)) {
                 $this->getHTMLHandler()->attr($scButton, 'href', $url);
             } else {
-                $this->getHTMLHandler()->addClass($scButton, 'hidden');
+                $this->getHTMLHandler()->remove($scButton);
             }
         }
     }
