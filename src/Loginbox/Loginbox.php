@@ -17,7 +17,6 @@ use stdClass;
  * Class Loginbox
  *
  * @package Loginbox
- * @version 0.1
  */
 class Loginbox
 {
