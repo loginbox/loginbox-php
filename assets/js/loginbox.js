@@ -51,7 +51,7 @@ if (typeof window.jQuery === 'undefined') {
                 // Reset all forms
                 $('.identity-login-box form').each(function () {
                     loginBox.resetForm($(this));
-                    loginBox.clearFormReport($(this));
+                    loginBox.clearErrors();
                 });
 
                 // Adjust footer links
