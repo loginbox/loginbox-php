@@ -7,9 +7,9 @@ if (typeof window.jQuery === 'undefined') {
     var __loginBox = {
         options: {
             cookie: {
-                name: "__awt",
+                name: '__awt',
                 duration: 30,
-                domain: ""
+                domain: ''
             },
             callbacks: {
                 login: null,
@@ -28,41 +28,46 @@ if (typeof window.jQuery === 'undefined') {
         init: function () {
             // loginBox listeners
             // Close dialog
-            $(document).on("click", ".identity-login-box.dialog .box-header .btn-close", function () {
+            $(document).on('click', '.identity-login-box.dialog .box-header .btn-close', function () {
                 // Click on menu
-                $(this).trigger("dispose");
-                $(this).trigger("login-box-dispose");
-                $(this).closest(".identity-login-box-container").detach();
+                $(this).trigger('dispose');
+                $(this).trigger('login-box-dispose');
+                $(this).closest('.identity-login-box-container').detach();
+            });
+
+            // Submit form - clear errors
+            $(document).on('submit', '.identity-login-box form', function () {
+                loginBox.clearErrors();
             });
 
             // Switch forms
-            $(document).on("click", ".identity-login-box .box-footer .ft-lnk", function () {
+            $(document).on('click', '.identity-login-box .box-footer .ft-lnk', function () {
                 // Get form reference
-                var fref = $(this).data("fref");
+                var fref = $(this).data('fref');
 
                 // Hide all forms and show the selected one
                 __loginBox.showBox(fref);
 
                 // Reset all forms
-                $(".identity-login-box form").each(function () {
+                $('.identity-login-box form').each(function () {
                     loginBox.resetForm($(this));
                     loginBox.clearFormReport($(this));
                 });
 
                 // Adjust footer links
-                $(".ft-lnk, .ft-lnk-bull").removeClass("hidden");
-                $(this).addClass("hidden");
-                $(".ft-lnk-bull." + fref).addClass("hidden");
+                $('.ft-lnk, .ft-lnk-bull').removeClass('hidden');
+                $(this).addClass('hidden');
+                $('.ft-lnk-bull.' + fref).addClass('hidden');
             });
 
             // Reset and recover forms
-            $(document).on("click", ".identity-login-box .box-main .bx-sub-title.action.reset", function () {
+            $(document).on('click', '.identity-login-box .box-main .bx-sub-title.action.reset', function () {
                 // Hide all forms and show the selected one
                 __loginBox.showBox('reset');
             });
 
             // Reset and recover forms
-            $(document).on("click", ".identity-login-box .box-main .bx-sub-title.action.recover", function () {
+            $(document).on('click', '.identity-login-box .box-main .bx-sub-title.action.recover', function () {
                 // Hide all forms and show the selected one
                 __loginBox.showBox('recover');
             });
@@ -79,14 +84,14 @@ if (typeof window.jQuery === 'undefined') {
         },
         loginSuccess: function (title, redirect_url) {
             __loginBox.showSuccess(title, function () {
-                if ($.type(redirect_url) != "undefined") {
+                if ($.type(redirect_url) != 'undefined') {
                     window.location = redirect_url;
                 }
             }, 2000);
         },
         registerSuccess: function (title, redirect_url) {
             __loginBox.showSuccess(title, function () {
-                if ($.type(redirect_url) != "undefined") {
+                if ($.type(redirect_url) != 'undefined') {
                     window.location = redirect_url;
                 }
             }, 2000);
@@ -94,31 +99,28 @@ if (typeof window.jQuery === 'undefined') {
         showSuccess: function (title, callback, timeout) {
             __loginBox.showBox('success');
             $('.box-main.success .bx-succ-title').html(title);
-            if ($.type(callback) != "undefined") {
+            if ($.type(callback) != 'undefined') {
                 setTimeout(callback, timeout);
             }
         },
+        showError: function (title) {
+            $('.identity-login-box form:visible').addClass('has-error');
+            $('.identity-login-box form:visible .inp-container ~ .err-container').html(title);
+        },
+        clearErrors: function () {
+            $('.identity-login-box form').removeClass('has-error');
+            $('.identity-login-box .err-container').empty();
+        },
         showBox: function (box) {
-            $(".box-main").addClass("hidden");
-            $(".box-main." + box).removeClass("hidden");
-        },
-        setFormReport: function (jqForm, report) {
-            var ntf = jq("<div />").addClass("ntf").html(report);
-            jqForm.find(".formReport").append(ntf);
-        },
-        setFormErrorReport: function (jqForm, report) {
-            var ntf = jq("<div />").addClass("ntf").addClass("error").html(report);
-            jqForm.find(".formReport").append(ntf);
-        },
-        clearFormReport: function (jqForm) {
-            jqForm.find(".formReport").empty();
+            $('.box-main').addClass('hidden');
+            $('.box-main.' + box).removeClass('hidden');
         },
         resetForm: function (jqForm, full) {
             // Reset form (full or password-only)
             if (full == 1 || full == undefined)
                 jqForm.trigger('reset');
             else
-                jqForm.find("input[type=password]").val("");
+                jqForm.find('input[type=password]').val('');
         }
     };
 

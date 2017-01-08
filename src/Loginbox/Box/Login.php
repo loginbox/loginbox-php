@@ -206,6 +206,10 @@ class Login extends HTMLElement
         $input->attr('placeholder', ucfirst($this->translate('loginbox.login.form.password')));
         $inputContainer->append($input);
 
+        // Error container
+        $errContainer = $this->getHTMLDocument()->create('div', '', '', 'err-container');
+        $form->append($errContainer);
+
         // Login button
         $input = $form->getHTMLFormFactory()->buildSubmitButton($this->translate('loginbox.login.form.submit'), '', '', 'positive lpbtn');
         $form->append($input);
@@ -257,6 +261,10 @@ class Login extends HTMLElement
         $input->attr('placeholder', ucfirst($this->translate('loginbox.register.form.password')));
         $inputContainer->append($input);
 
+        // Error container
+        $errContainer = $this->getHTMLDocument()->create('div', '', '', 'err-container');
+        $form->append($errContainer);
+
         // Login button
         $input = $form->getHTMLFormFactory()->buildSubmitButton($this->translate('loginbox.register.form.submit'), '', '', 'positive lpbtn');
         $form->append($input);
@@ -293,6 +301,10 @@ class Login extends HTMLElement
         $input->attr('placeholder', ucfirst($this->translate('loginbox.recover.form.email')));
         $inputContainer->append($input);
 
+        // Error container
+        $errContainer = $this->getHTMLDocument()->create('div', '', '', 'err-container');
+        $form->append($errContainer);
+
         // Login button
         $input = $form->getHTMLFormFactory()->buildSubmitButton($this->translate('loginbox.recover.form.submit'), '', '', 'positive lpbtn');
         $form->append($input);
@@ -323,6 +335,10 @@ class Login extends HTMLElement
         $input = $form->getHTMLFormFactory()->buildInput($type = 'password', $name = 'password_confirm', $value = '', $id = '', $class = 'uiFormInput lpinp', $autofocus = false, $required = true);
         $input->attr('placeholder', ucfirst($this->translate('loginbox.reset.form.password_confirm')));
         $inputContainer->append($input);
+
+        // Error container
+        $errContainer = $this->getHTMLDocument()->create('div', '', '', 'err-container');
+        $form->append($errContainer);
 
         // Login button
         $input = $form->getHTMLFormFactory()->buildSubmitButton($this->translate('loginbox.reset.form.submit'), '', '', 'positive lpbtn');

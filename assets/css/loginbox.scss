@@ -79,6 +79,12 @@
             & {
                 padding: 5px;
             }
+            form.has-error .inp-container {
+                border-color: #c00403;
+                transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+            }
             .inp-container {
                 border: 1px solid #999;
                 border-radius: 3px;
@@ -88,6 +94,9 @@
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 margin: 8px 0;
+                transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
             }
             .lpinp {
                 width: 100%;
@@ -139,6 +148,15 @@
             }
             .ntf.error {
                 color: #c00403;
+            }
+            .err-container {
+                padding: 10px 12px;
+                text-align: left;
+                color: #c00403;
+
+                &:empty {
+                    display: none;
+                }
             }
         }
         &.register .terms {

@@ -61,6 +61,11 @@
   display: block; }
 .identity-login-box-container .box-main .form-container {
   padding: 5px; }
+.identity-login-box-container .box-main .form-container form.has-error .inp-container {
+  border-color: #c00403;
+  transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out; }
 .identity-login-box-container .box-main .form-container .inp-container {
   border: 1px solid #999;
   border-radius: 3px;
@@ -69,7 +74,10 @@
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  margin: 8px 0; }
+  margin: 8px 0;
+  transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out; }
 .identity-login-box-container .box-main .form-container .lpinp {
   width: 100%;
   height: 36px;
@@ -114,6 +122,12 @@
   color: #777; }
 .identity-login-box-container .box-main .form-container .ntf.error {
   color: #c00403; }
+.identity-login-box-container .box-main .form-container .err-container {
+  padding: 10px 12px;
+  text-align: left;
+  color: #c00403; }
+  .identity-login-box-container .box-main .form-container .err-container:empty {
+    display: none; }
 .identity-login-box-container .box-main.register .terms {
   margin: 15px 0;
   text-decoration: none; }
