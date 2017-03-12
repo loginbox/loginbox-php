@@ -73,6 +73,9 @@ class Login extends HTMLElement
      *
      * @param HTMLDocument             $HTMLDocument
      * @param HTMLFormFactoryInterface $FormFactory
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function __construct(HTMLDocument $HTMLDocument, HTMLFormFactoryInterface $FormFactory)
     {

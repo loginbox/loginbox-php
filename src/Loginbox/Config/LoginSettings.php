@@ -103,7 +103,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @param string $login_redirect_url
      */
-    public function setLoginRedirectUrl(string $login_redirect_url)
+    public function setLoginRedirectUrl($login_redirect_url)
     {
         $this->login_redirect_url = $login_redirect_url;
     }
@@ -135,7 +135,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @param string $register_redirect_url
      */
-    public function setRegisterRedirectUrl(string $register_redirect_url)
+    public function setRegisterRedirectUrl($register_redirect_url)
     {
         $this->register_redirect_url = $register_redirect_url;
     }
@@ -151,7 +151,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @param string $register_terms_url
      */
-    public function setRegisterTermsUrl(string $register_terms_url)
+    public function setRegisterTermsUrl($register_terms_url)
     {
         $this->register_terms_url = $register_terms_url;
     }
@@ -183,7 +183,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @param string $password_recovery_url
      */
-    public function setPasswordRecoveryUrl(string $password_recovery_url)
+    public function setPasswordRecoveryUrl($password_recovery_url)
     {
         $this->password_recovery_url = $password_recovery_url;
     }
@@ -199,7 +199,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @param string $password_reset_url
      */
-    public function setPasswordResetUrl(string $password_reset_url)
+    public function setPasswordResetUrl($password_reset_url)
     {
         $this->password_reset_url = $password_reset_url;
     }

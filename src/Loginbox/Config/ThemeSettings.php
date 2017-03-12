@@ -36,7 +36,7 @@ class ThemeSettings
     /**
      * @param string $logo_url
      */
-    public function setLogoUrl(string $logo_url)
+    public function setLogoUrl($logo_url)
     {
         $this->logo_url = $logo_url;
     }
@@ -52,7 +52,7 @@ class ThemeSettings
     /**
      * @param string $theme_color
      */
-    public function setThemeColor(string $theme_color)
+    public function setThemeColor($theme_color)
     {
         $this->theme_color = $theme_color;
     }
