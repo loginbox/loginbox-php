@@ -28,7 +28,7 @@ class ThemeSettings
     /**
      * @return string
      */
-    public function getLogoUrl(): string
+    public function getLogoUrl()
     {
         return $this->logo_url;
     }
@@ -44,7 +44,7 @@ class ThemeSettings
     /**
      * @return string
      */
-    public function getThemeColor(): string
+    public function getThemeColor()
     {
         return $this->theme_color;
     }

@@ -150,6 +150,7 @@ class Login extends HTMLElement
      * Append Javascript and css to the loginbox.
      *
      * @return $this
+     * @throws InvalidArgumentException
      */
     private function appendResources()
     {
@@ -172,6 +173,8 @@ class Login extends HTMLElement
      * @param string $username The default username value for the input
      *
      * @return $this
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function buildLoginForm($username = '')
     {
@@ -221,6 +224,8 @@ class Login extends HTMLElement
      * Build the registration form.
      *
      * @return $this
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function buildRegistrationForm()
     {
@@ -281,6 +286,8 @@ class Login extends HTMLElement
      * Build the password recovery form
      *
      * @return $this
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function buildPasswordRecoveryForm()
     {
@@ -351,6 +358,7 @@ class Login extends HTMLElement
      * Translate the entire box.
      *
      * @return $this
+     * @throws Exception
      */
     private function translateBox()
     {
@@ -373,6 +381,7 @@ class Login extends HTMLElement
      * @param string $locale
      *
      * @return string
+     * @throws Exception
      */
     private function translate($key, $locale = null)
     {
@@ -382,9 +391,12 @@ class Login extends HTMLElement
     }
 
     /**
-     * enabled the selected box mode
+     * Enabled the selected box mode
      *
      * @param string $mode
+     *
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function selectBox($mode)
     {
@@ -512,7 +524,7 @@ class Login extends HTMLElement
     /**
      * @return ThemeSettings
      */
-    public function getThemeSettings(): ThemeSettings
+    public function getThemeSettings()
     {
         return $this->themeSettings;
     }
@@ -528,7 +540,7 @@ class Login extends HTMLElement
     /**
      * @return SocialSettings
      */
-    public function getSocialSettings(): SocialSettings
+    public function getSocialSettings()
     {
         return $this->socialSettings;
     }

@@ -9,6 +9,8 @@
 
 namespace Loginbox\Box;
 
+use Exception;
+use InvalidArgumentException;
 use Panda\Ui\Contracts\Factories\HTMLFormFactoryInterface;
 use Panda\Ui\Html\HTMLDocument;
 use Panda\Ui\Html\HTMLElement;
@@ -48,6 +50,8 @@ class Profile extends HTMLElement
      * @param string $logoutUrl
      *
      * @return $this
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     public function build($logoutUrl = '')
     {
@@ -63,6 +67,8 @@ class Profile extends HTMLElement
      * @param $logoutUrl
      *
      * @return $this
+     * @throws Exception
+     * @throws InvalidArgumentException
      */
     private function buildProfileViewPanel($logoutUrl)
     {
@@ -95,6 +101,7 @@ class Profile extends HTMLElement
      * @param string $class
      *
      * @return HTMLElement
+     * @throws Exception
      */
     private function getViewPanel($class = '')
     {
@@ -107,6 +114,7 @@ class Profile extends HTMLElement
      * @param $logoutUrl
      *
      * @return HTMLElement
+     * @throws InvalidArgumentException
      */
     private function getLogoutForm($logoutUrl)
     {

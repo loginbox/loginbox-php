@@ -8,6 +8,7 @@
  */
 
 namespace Loginbox\Config;
+
 use ReflectionClass;
 
 /**
@@ -46,7 +47,7 @@ class SocialSettings
     /**
      * @return boolean
      */
-    public function isEnabled(): bool
+    public function isEnabled()
     {
         return $this->enabled;
     }

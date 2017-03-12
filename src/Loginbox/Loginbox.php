@@ -53,6 +53,10 @@ class Loginbox
      * @param array  $files
      *
      * @return stdClass
+     * @throws Connection\Exceptions\GenericHTTPError
+     * @throws Connection\Exceptions\InvalidCredentials
+     * @throws Connection\Exceptions\MissingEndpoint
+     * @throws Connection\Exceptions\MissingRequiredParameters
      */
     public function post($endpointUrl, $postData = array(), $files = array())
     {
@@ -64,6 +68,10 @@ class Loginbox
      * @param array  $queryString
      *
      * @return stdClass
+     * @throws Connection\Exceptions\GenericHTTPError
+     * @throws Connection\Exceptions\InvalidCredentials
+     * @throws Connection\Exceptions\MissingEndpoint
+     * @throws Connection\Exceptions\MissingRequiredParameters
      */
     public function get($endpointUrl, $queryString = array())
     {
@@ -74,6 +82,10 @@ class Loginbox
      * @param string $endpointUrl
      *
      * @return stdClass
+     * @throws Connection\Exceptions\GenericHTTPError
+     * @throws Connection\Exceptions\InvalidCredentials
+     * @throws Connection\Exceptions\MissingEndpoint
+     * @throws Connection\Exceptions\MissingRequiredParameters
      */
     public function delete($endpointUrl)
     {
@@ -85,6 +97,10 @@ class Loginbox
      * @param array  $putData
      *
      * @return stdClass
+     * @throws Connection\Exceptions\GenericHTTPError
+     * @throws Connection\Exceptions\InvalidCredentials
+     * @throws Connection\Exceptions\MissingEndpoint
+     * @throws Connection\Exceptions\MissingRequiredParameters
      */
     public function put($endpointUrl, $putData)
     {

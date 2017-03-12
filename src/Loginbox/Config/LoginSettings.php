@@ -63,7 +63,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @return boolean
      */
-    public function isRememberMe(): bool
+    public function isRememberMe()
     {
         return $this->rememberMe;
     }
@@ -95,7 +95,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @return string
      */
-    public function getLoginRedirectUrl(): string
+    public function getLoginRedirectUrl()
     {
         return $this->login_redirect_url;
     }
@@ -127,7 +127,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @return string
      */
-    public function getRegisterRedirectUrl(): string
+    public function getRegisterRedirectUrl()
     {
         return $this->register_redirect_url;
     }
@@ -143,7 +143,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @return string
      */
-    public function getRegisterTermsUrl(): string
+    public function getRegisterTermsUrl()
     {
         return $this->register_terms_url;
     }
@@ -159,7 +159,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @return boolean
      */
-    public function isLoginAfterRegistration(): bool
+    public function isLoginAfterRegistration()
     {
         return $this->login_after_registration;
     }
@@ -175,7 +175,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @return string
      */
-    public function getPasswordRecoveryUrl(): string
+    public function getPasswordRecoveryUrl()
     {
         return $this->password_recovery_url;
     }
@@ -191,7 +191,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @return string
      */
-    public function getPasswordResetUrl(): string
+    public function getPasswordResetUrl()
     {
         return $this->password_reset_url;
     }
