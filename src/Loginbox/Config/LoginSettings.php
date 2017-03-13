@@ -71,7 +71,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @param boolean $rememberMe
      */
-    public function setRememberMe(bool $rememberMe)
+    public function setRememberMe($rememberMe)
     {
         $this->rememberMe = $rememberMe;
     }
