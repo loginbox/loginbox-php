@@ -167,7 +167,7 @@ class LoginSettings extends GlobalSettings
     /**
      * @param boolean $login_after_registration
      */
-    public function setLoginAfterRegistration(bool $login_after_registration)
+    public function setLoginAfterRegistration($login_after_registration)
     {
         $this->login_after_registration = $login_after_registration;
     }

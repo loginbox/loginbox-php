@@ -55,7 +55,7 @@ class SocialSettings
     /**
      * @param boolean $enabled
      */
-    public function setEnabled(bool $enabled)
+    public function setEnabled($enabled)
     {
         $this->enabled = $enabled;
     }
